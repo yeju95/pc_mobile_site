@@ -1,5 +1,12 @@
 $(function(){
-//main
+
+  //햄버거 버튼을 클릭하면
+  $('.hamb_la').click(function(){
+  $(this).toggleClass('open');
+  $('.menu').slideToggle();
+});
+
+//main-첫번쨰
     var sliderUl = $('#slider>ul');          
     var imgWidth = $('#slider img').width(); 
     var imgNumber = $('#slider li').length;  
@@ -7,13 +14,12 @@ $(function(){
 
     sliderUl.css({width:imgWidth*imgNumber});   
 
-
+  //button
     var right = function(){
         sliderUl.find('li:last-child').insertBefore(sliderUl.find('li:first-child')); 
         sliderUl.css({'margin-left':-500});
         sliderUl.animate({'margin-left':0},300);
     };
-
 
     var left = function(){
         sliderUl.animate({'margin-left':500},300,'swing',function(){
@@ -22,21 +28,26 @@ $(function(){
         });    
     }; 
 
-
     $(".right").click(function(){
         right();
     });
-
 
     $(".left").click(function(){
         left();
     });
 
-
-
-
     var du = 400; 
 
+    //슬라이더 방향- 왼쪽에서 오른쪽으로
+    setInterval(function(){
+      sliderUl.find('li:last-child').insertBefore(sliderUl.find('li:first-child')); 
+      sliderUl.css({'margin-left':-1960});
+      sliderUl.animate({'margin-left':0},1000);
+  },5000);
+
+
+
+    //이미지 카드
 $(".first .item").on("mouseenter",function(){
   $(this).find("strong, span").stop().animate({opacity:1},du);
 })
@@ -45,12 +56,12 @@ $(".first .item").on("mouseenter",function(){
 });
 
 
-//슬라이더-slick
+//슬라이더-slick-두번쨰
 $('.slides').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,             //자동 슬라이드
-    autoplaySpeed:3000,         //이미지 전환속도(정지된 시간 포함)
+    autoplaySpeed:2500,         //이미지 전환속도(정지된 시간 포함)
     arrows:true,                //양옆 화살표(true가 기본)
     dots:true,                  //페이지버튼
     //fade:true,                  //투명도로 전환
@@ -74,7 +85,7 @@ if(winW < 769){
     });
 
     $('.mySlider').slick({
-        dots: true, 
+        dots: false, 
     });
 
 } else {
